@@ -1,0 +1,184 @@
+CHAPTER 4A: MEDIUM DESIGN - TOUR PAGE AND FOOTER
+
+Begin: https://codepen.io/jen4web/pen/KKGdzLJ
+
+NOTE: Screenshot shows the background gradient with a stripe effect. This is an artifact of the screenshot. The gradient should go smoothly from top to bottom of the window.
+
+Important thing is to break this into parts. The tour content is the same. We've added a button.
+
+A: Edit the HTML and CSS on the existing easy site and remove the extra materials. We only need the tour information, not the photos and reviews.
+
+<div class="wrapper">
+	<header>...</header>
+	<main>...</main>
+	<footer>...</footer>
+</div>
+
+Remove the layer for reviews, plus most of the media queries:
+@media (min-width: 800px) {
+  .wrapper {
+    max-width: 800px;
+    padding: 2rem;
+  }
+}
+@media (min-width: 1025px) {
+  .wrapper {
+    max-width: 1200px;
+  }
+}
+
+
+B: Add links for "Buy Tickets" (class of button-primary) or "Sold Out" (class of button-primary button-soldout).
+
+<p><a class="button-primary button-soldout">Sold Out</a></p>
+<p><a href="#" class="button-primary">Buy Tickets</a></p>
+
+Note that "sold out" has no href attribute. This means the link is not clickable.
+
+Now the HTML is in place. Let's move onto CSS.
+
+C: Make changes to the body base styling.
+* remove text-align: center from body
+* change font-family to var(--serif) (we'll define this variable later)
+* add a variable for the gradient:
+  --gradient: linear-gradient(180deg, var(--black) 0%, var(--teal) 100%);
+* apply gradient to body background
+    background: var(--gradient);
+
+
+
+E: Set up the tour dates and (future) buttons into a grid.
+main {
+  margin: 0 auto 4rem auto;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  gap: 0;
+  max-width: 600px;
+}
+  main h1 {
+    grid-area: 1 / 1 / 2 / 3;
+    text-align: center;
+  }
+
+
+E: Investigate how to make a diagonal line for our button.
+https://codepen.io/jen4web/pen/oNaYexj
+
+F: Style our buttons.
+
+.button-primary {
+  color: var(--magenta);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--magenta);
+  border-radius: 10px;
+  text-align: center;
+  white-space: nowrap;
+  width: 170px;
+}
+.button-soldout {
+  background: linear-gradient(to top right, transparent calc(50% - 2px), var(--magenta50) , transparent calc(50% + 2px) );
+  color: var(--magenta50);
+  border-color: var(--magenta50);
+}
+.button-primary:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+.button-soldout:hover {
+  color: var(--magenta50);
+  border-color: var(--magenta50);
+}
+
+G: Revisit button styling within the grid and adjust the layout.
+  main > * {
+    border: 1px solid white;
+  }
+  main p:nth-child(odd) {
+    justify-self: end;
+    align-self: center;
+  }
+
+
+F: Add fonts for tours.
+
+Google Fonts --
+* Cormorant Garamond 400, 600
+* Pacifico 400
+* Poppins 300, 600
+
+https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Pacifico&amp;family=Poppins:wght@300;600&amp;display=swap
+
+:root {
+    /* fonts */
+    --sans-serif: "Poppins", sans-serif;
+    --serif: "Cormorant Garamond", serif;
+    --cursive: "Pacifico", cursive;
+}
+  main h1 {
+    grid-area: 1 / 1 / 2 / 3;
+    text-align: center;
+    font-family: var(--cursive);
+  }
+  .date {
+    color: var(--tan);
+    font-family: var(--cursive);
+  }
+  .club {
+    color: var(--lime);
+    font-size: var(--h5);
+    text-transform: uppercase;
+  }
+
+However, this means that the city is in a serif font (from the body). There are many ways we could solve this:
+* add a span with class around the city and style
+*  main p {
+    font-family: var(--sans-serif);
+  }
+  However, this will make the buttons sans-serif as well -- we'll need to add a serif style to their text
+*   p:has(.club) {
+    font-family: var(--sans-serif);
+  }
+  :has is not as well supported, but this is a great place to use it. If you do, you'll need to modify the .club style:
+
+  .club {
+    color: var(--lime);
+    font-size: var(--h5);
+    text-transform: uppercase;
+    font-family: var(--serif);
+  }
+--> Why does .club (specificity 0-1-0) beat p:has(.club)(specificity 0-2-1)? <--
+
+
+G: Add SVG icons to the footer.
+
+SVG icons are in the chapter 4 folder OR you may use the links on CodePen. 
+
+https://assets.codepen.io/296057/fem-instagram.svg -- link to https://www.instagram.com
+
+https://assets.codepen.io/296057/fem-spotify.svg -- link to https://www.spotify.com
+
+https://assets.codepen.io/296057/fem-soundcloud.svg -- link to https://www.soundcloud.com
+
+a. Consider the correct markup for these. 
+
+b. Style accordingly.
+
+NOTE: This may be helpful -- 
+https://css-tricks.com/change-color-of-svg-on-hover/
+
+
+Solution: https://codepen.io/jen4web/pen/qBJmMjL
+
+
+H: Testing across breakpoints.
+
+
+End: https://codepen.io/jen4web/pen/XWxRdrQ
+
+
+

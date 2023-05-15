@@ -1,0 +1,55 @@
+CHAPTER 3C: EASY DESIGN - Reviews and footer
+
+
+Start: https://codepen.io/jen4web/pen/rNqmBdN
+
+To get the review under control, we need to do the following:
+  * Set images to have spacing on top
+  * Set stars to a smaller size and next to each other
+  * Style the quotes to look like the design
+  * Establish spacing between tour and reviews
+
+
+  1. Set images to have spacing on top
+
+  Each unit has some spacing on top to separate it from the next unit.
+
+    .imggroup {
+    margin-top: 2rem;
+  }
+
+  2. Set stars to a smaller size and next to each other
+
+    .star {
+	  width: 18px;
+	}
+
+	Why are they next to each other? Why didn't we have to use Flexbox or Grid to make this happen?
+
+  3. Style the quotes to look like the design, add basic HTML styles to the base styling
+
+    blockquote {
+	  margin: 0;
+	  padding: 0;
+	}
+	cite {
+	  font-style: normal;
+	  display: block;
+	  margin-top: -3px;
+	}
+
+  4. Establish spacing between tour and reviews, base styling
+	  main {
+		  margin-bottom: 4rem;
+	  }
+
+ 
+5. Format the footer, base styling.
+
+footer {
+  margin-top: 5rem;
+  text-transform: uppercase;
+}
+
+
+Ending CodePen: https://codepen.io/jen4web/pen/jOemNzd

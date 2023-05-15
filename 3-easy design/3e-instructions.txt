@@ -1,0 +1,71 @@
+CHAPTER 3E: EASY DESIGN - Desktop design
+
+Approach:
+* Override styling for a desktop design in a media query, leveraging existing styles and making changes where needed.
+
+
+Tips:
+* First, work on each section of the page and its own layout.
+
+* What changes between layouts? Say it out loud or write it down to clarify your thoughts. "The tour dates section starts on mobile with one column with everything stacked and centered. It moves to tablet with three columns with spacing between each item. Then it moves to desktop with one column on the right side of the page."
+
+* Some layouts happen within each section, while other layouts happen within the page itself. Focus on the section layouts first, then on the page layouts. Get the rough locations first before worrying about perfect spacing and alignment.
+
+* Never hesitate to throw in borders or background colors to aid styling. If you can't see it, you can't style it!
+
+
+We will take the following approach:
+* wrapper
+* tour dates
+
+Starting CodePen: https://codepen.io/jen4web/pen/ExdmxrQ
+
+
+1. Wrapper
+Currently our wrapper is set to 800px wide. Let's change it to 1200px wide for this media query.
+
+@media (min-width: 1025px) {
+  .wrapper {
+    max-width: 1200px;
+  }
+}
+
+2. How do we get the tour dates next to the other items?
+
+ We need an outer grid with two columns. The right column will contain the tour dates, while the left column holds everything else.
+
+ header, .banner, main, aside, footer are all children of .wrapper, so let's put the grid declaration on .wrapper.
+
+ @media (min-width: 1025px) {
+  .wrapper {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0 2rem;
+  }
+  }
+
+3.  Ack! It looks crazy! Why? Because each child is assigned its own cell, from left to right. Logo is on the left, banner is to the right of it. Tour dates/main are on the left, reviews/aside is on the right.
+
+We can use grid area again to have only the Tours information on the right column.
+
+  main {
+    /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+    grid-area: 1 / 2 / 5 / 3;
+    padding-top: 8rem;
+  }
+
+4. However, our tour dates are still in 3 columns, carried over from the tablet layout. We could change our grid layout here, or simply set the display to block, which eliminates all grid layout.
+
+  main {
+    /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+    grid-area: 1 / 2 / 5 / 3;
+    padding-top: 8rem;
+    display: block;
+  }
+
+
+
+
+Ending CodePen: https://codepen.io/jen4web/pen/YzJVzBB
+  

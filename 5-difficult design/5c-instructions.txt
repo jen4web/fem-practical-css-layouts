@@ -1,0 +1,42 @@
+CHAPTER 5C: NAV
+could be student assignment
+
+Begin: https://codepen.io/jen4web/pen/abRqreq
+End: https://codepen.io/jen4web/pen/WNaMqWE
+
+This CodePen includes the navbar, album cover, audio player, and tracklist from our medium design, including markup and CSS.
+
+I've mixed in the CSS from our previous work (base, reviews, album, footer) with the CSS from our medium final design (nav, audio, playlist). Everything seems to be working well.
+
+To the HTML, I've added 2 more links for this design, Music and Signup.
+
+The JavaScript panel contains the scripts to run the hamburger button and the audio player.
+
+Review the current design -- you can see the nav is a bit rough in its design, although the functionality still works fine.
+
+Let's tweak the nav for the two breakpoints.
+
+500px, 800px, 1000px
+
+At 500px, what do we want to see?
+* lime logo and hamburger button, aligned over top of cover
+
+* remove max-width from #top -- let the wrapper control the overall width
+
+* .bandname outside of MQ -   .bandname {
+    display: none;
+  }
+  does not display at < 500px
+
+Over 500px, the band name does display
+/* where the band name displays */
+  @media (min-width: 500px) {
+    .bandname {
+      display: inline;
+    }
+  }
+}
+
+Note the max-width MQ is all about the hamburger button and needs no change.
+
+Note that at 800px we have a moment with the band name and hamburger - reducing the MQ to 799px prevents this. 

@@ -1,0 +1,49 @@
+5I: ADDING DESKTOP BREAKPOINT
+
+Begin: https://codepen.io/jen4web/pen/abRYjgP
+End: https://codepen.io/jen4web/pen/ExdEpoL
+
+
+We'll make a few tweaks to our page so it will work at a desktop dimension.
+
+First -- group header, main-grid, and reviews in a div.left.
+
+Group album.maglime, diamond-border, and cta in a div.right.
+
+We now have a wrapper with 3 children: left, right, and footer.
+
+We need to set our desktop min-width MQ to 1400px from 1000px. Set it to have 2 columns, with a 60/40 split.
+
+@media (min-width: 1400px) { 
+  .wrapper {
+    max-width: 1440px;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+  }
+  .hidetablet, .hidemobile {
+    display: block;
+  }
+  .left {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .right {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    margin-bottom: 5rem;
+  }
+  footer {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin-top: -20rem;
+  }
+
+}
+
+For the navigation - if you want to align this better with the album cover, add     max-width: 600px;
+to the #top style under nav.
+
+To better align the top nav to the name, change #top ul to gap: 1rem, margin: 0.5rem 0 0 0;
+
+
+

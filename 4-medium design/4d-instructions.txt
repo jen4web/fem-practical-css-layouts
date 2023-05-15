@@ -1,0 +1,203 @@
+CHAPTER 4D: AUDIO PLAYER
+
+Skinning an audio player may be new for many of you. The first thing to do is to find one that works for you. 
+
+Audio player forked from CSS Tricks:
+https://codepen.io/jen4web/pen/KKGgbrj
+
+Article describing how the audio player was created: https://css-tricks.com/lets-create-a-custom-audio-player/
+
+A: EVALUATION
+
+We found an audio player we want to use on our site, as it has most of the elements we want. Audio seek slider, volume slider, play button, mute button are all included. The current track name is not included, but we can add this.
+
+(Note: our design is static, playing only one track. Making this dynamic and loading a track from a list/database is beyond the scope of this course.)
+
+The styling is not what we want, but as long as most of the elements are there, we are in great shape for re-skinning.
+
+Things we need to change:
+* Substitute placeholder audio with our own
+* Seek slider and volume should be next to each other
+* Play button should be above the sliders and restyled
+* Track name and number should appear (this is an addition)
+* Colors, fonts, size, spacing of course
+* In general, the JavaScript author relies on IDs for selection. Therefore, to keep the JS working, we should not eliminate or change the ID names or separate them from their elements.
+* Note the Lottie Web dependency (https://github.com/airbnb/lottie-web). This library provides animated icons.
+
+
+B: MODIFY HTML
+Always start with the HTML! 
+
+Consider the layout - what elements need to be added to achieve this layout? Should we use Flexbox or Grid?
+
+Inside name-play, we set up a grid of 3 cells.
+Inside controls, we set up a grid of 2 cells.
+
+<div id="audio-player-container">
+  <audio src="https://assets.codepen.io/296057/fem-bombshell.mp3" preload="metadata" loop></audio>
+  <div class="name-play">
+    <p>Bombshell Looks</p>
+    <button id="play-icon"></button>
+    <p>Track 7</p>
+  </div>
+  <div class="controls">
+    <div class="play-slider">
+      <span id="current-time" class="time">0:00</span>
+      <input type="range" id="seek-slider" max="100" value="0">
+      <span id="duration" class="time">0:00</span>
+    </div>
+    <div class="volume">
+      <output id="volume-output">100</output>
+      <input type="range" id="volume-slider" max="100" value="100">
+      <button id="mute-icon"></button>
+    </div>
+  </div>
+</div>
+
+End: https://codepen.io/jen4web/pen/abRyoZX
+
+C: SIMPLIFY CSS AND ADD STANDARD STYLES
+Read the CSS that's present and delete what doesn't make sense.
+
+* In general, standard HTML element styles will be replaced by our own. Let's delete styles for body, p. For button, delete width, height, and float.
+
+* Look at #audio-player-container and #audio-player-container::before. These include a linear gradient and a white background color. Indeed, this is how we achieve the rainbow border and white background. There are some variables inside of #audio-player-container, so keep those. Otherwise, delete these styles.
+
+* Create a layer for the audio styles, and copy in @layer base for base styling.
+
+* Note that our fonts don't "work" -- be sure the CodePen has a link to the appropriate Google fonts.
+https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&amp;family=Pacifico&amp;family=Poppins:wght@300;600&amp;display=swap
+
+End: https://codepen.io/jen4web/pen/abRyoWx
+
+D: GENERAL LAYOUT OF CONTROLS.
+
+* Now let's lay out the grid for our name/play button and the track/volume controls.
+
+#audio-player-container .controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem;
+}
+#audio-player-container .volume {
+  display: grid;
+  grid-template-columns:  0.15fr 1fr 0.15fr;
+  justify-content: center;
+  align-items: center;
+}
+#audio-player-container .name-play {
+  display: grid;
+  grid-template-columns: 2fr 0.75fr 2fr;
+  gap: 1rem;
+  margin: 1rem;
+}
+#audio-player-container .play-slider {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  justify-content: center;
+  align-items: center;
+}
+
+End: https://codepen.io/jen4web/pen/mdzMbQW
+
+E: FINAL STYLING OF ELEMENTS
+Once everything is in the general position, now we can style more carefully with CSS to get the look we want.
+
+#audio-player-container button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+button#mute-icon {
+  width: 2rem;
+  margin-left: 1rem;
+}
+button#play-icon {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--lime);
+  width: 3rem;
+  height: 3rem;
+}
+button#play-icon:hover {
+  background-color: var(--cyan);
+}
+button#play-icon path {
+  stroke: var(--black);
+}
+
+#audio-player-container path {
+    stroke: white;
+}
+  #audio-player-container output {
+    display: inline-block;
+    text-align: center;
+  }
+    #current-time {
+    text-align: left;
+  }
+  #duration {
+    text-align: right;
+  }  
+  #volume-slider {
+    width: 100%;
+    margin: 10px 2.5%;
+  }
+
+
+
+Modify existing styles:
+
+  input[type="range"] {
+    position: relative;
+    -webkit-appearance: none;
+    width: 48%;
+    margin: 0;
+    padding: 0;
+    height: 19px;
+    margin: 30px 2.5% 20px 2.5%;
+    float: left;
+    outline: none;
+  }
+to
+  input[type="range"] {
+    position: relative;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    height: 19px;
+    background-color: transparent;
+  }
+Everywhere you see #007db5, change to var(--cyan)
+
+End: https://codepen.io/jen4web/pen/gOBxYZR
+
+
+F: ADD THE ALBUM IMAGE
+
+Let's add the album image above the audio player and wrap the whole thing in a section.
+
+  <section class="cover">
+    <img src="https://assets.codepen.io/296057/fem-album.png" alt="Album cover: It was All a Dream by Magenta Lime." />
+    <div id="audio-player-container">
+    ...
+    </div>
+  </section>
+
+  add styling:
+    .cover {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  The player style becomes redundant, so you can get rid of it.
+
+    #audio-player-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }

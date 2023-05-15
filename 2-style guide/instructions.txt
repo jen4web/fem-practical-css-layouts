@@ -1,0 +1,147 @@
+CHAPTER 2: CREATING A STYLE GUIDE
+
+Let's set up some base styling for the website. The goal is to establish the following:
+
+* Establish colors as variables
+:root {
+  
+  /* colors */
+  --lime: #a4ffa2;
+  --magenta: #f47dda;
+  --magenta50: #f47dda80;
+  --white: #ffffff;
+  --tan: #cec5b4;
+  --teal: #2e6d81;
+  --cyan: #7de6f4;
+  --black: #050d14;
+}
+
+/* colors */
+.colors {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+.colors > * {
+  width: 3rem;
+  height: 3rem;
+}
+.lime {
+  background-color: var(--lime);)
+}
+.magenta {
+  background-color: var(--magenta);)
+}
+.magenta50 {
+  background-color: var(--magenta50);)
+}
+.white {
+  background-color: var(--white););
+  border: 1px solid #ccc;
+}
+.tan {
+  background-color: var(--tan);)
+}
+.teal {
+  background-color: var(--teal);
+  border: 1px solid var(--white);
+}
+.cyan {
+  background-color: var(--cyan);)
+}
+.black {
+  background-color: var(--black);)
+}
+
+
+* Establish font(s) as independent variables
+
+(For the easy design, there is only one font)
+
+  /* fonts */
+  --sans-serif: "Poppins", sans-serif;
+
+* Establish a type scale: https://typescale.com/ (use 1.25, Major Third)
+
+:root {
+  --base-size: 1rem;
+  --scale: 1.25;
+  --h1: calc(var(--h2) * var(--scale));
+  --h2: calc(var(--h3) * var(--scale));
+  --h3: calc(var(--h4) * var(--scale));
+  --h4: calc(var(--h5) * var(--scale));
+  --h5: calc(var(--h6) * var(--scale));
+  --h6: var(--base-size);
+}
+
+body {
+  font-family: var(--sans-serif);
+  font-weight: 300;
+  line-height: 1.75;
+  background-color: var(--teal);
+  color: var(--white);
+  font-size: var(--base-size);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 3rem 0 1.38rem;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--h1);
+}
+
+h2 {
+  font-size: var(--h2);
+}
+
+h3 {
+  font-size: var(--h3);
+}
+
+h4 {
+  font-size: var(--h4);
+}
+
+h5 {
+  font-size: var(--h5);
+}
+
+h6 {
+  font-size: var(--h6);
+}
+
+* Style commonly used HTML elements (often headings, paragraphs, lists, blockquotes, may include other elements) via HTML element selectors. Goal is to set up "default" styling that is easily overridden.
+
+a {
+  color: var(--lime);
+}
+a:hover {
+  color: var(--cyan);
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  max-width: 100%;
+}
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+Beginning HTML:
+https://codepen.io/jen4web/pen/eYPNYKW
+
+Ending CodePen:
+https://codepen.io/jen4web/pen/KKGpKBM

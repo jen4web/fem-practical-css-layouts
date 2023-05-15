@@ -1,0 +1,59 @@
+CHAPTER 5B: DOUBLE CORNER BORDERS
+
+Begin: https://codepen.io/jen4web/pen/qBJxGKp
+End: https://codepen.io/jen4web/pen/KKGQLxd
+
+Great thread with several approaches to this issue:
+https://stackoverflow.com/questions/14387690/how-can-i-show-only-corner-borders
+
+Below approach requires no extra markup -- just a container with at least one child where we can hijack the nodes to create boxes.
+
+JSFiddle that models a solution:
+http://jsfiddle.net/V8jmR/
+
+
+/* always ask RELATIVE TO WHAT? */
+.album {
+	    /* for inner corners */
+    position: relative;
+  }
+
+  
+  /* double border on corners - Create 4 boxes from the before/after nodes on the album container and the album's first child (h2) */
+  .album::before,
+  .album::after,
+  .album > :first-child::before,
+  .album > :first-child::after {
+    position: absolute;
+    /* change width and height to control corner size */
+    width: 40px;
+    height: 40px;
+    /* border requires color, style, width to display - here we set color and style only */
+    border-color: var(--cyan); 
+    border-style: solid; 
+    /* box requires some content to display */
+    content: " ";
+    /* controls space between inner and outer borders */
+    margin: 0.25rem;
+  }
+  /* now for each box, display it in its location and display the border on only 2 sides */
+   .album::before {
+    top: 0;
+    left: 0;
+    border-width: 1px 0 0 1px;
+  }
+  .album::after {
+    top: 0;
+    right: 0;
+    border-width: 1px 1px 0 0;
+  }
+  .album > :first-child::before {
+    bottom: 0;
+    right: 0;
+    border-width: 0 1px 1px 0;
+  }
+  .album > :first-child::after {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 1px 1px;
+  }

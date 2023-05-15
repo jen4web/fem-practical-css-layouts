@@ -1,0 +1,139 @@
+CHAPTER 5A: DIFFICULT DESIGN - SMALL ELEMENTS
+
+The difficult design has two major areas of focus: the album cover/tracklist, and the diamond images. The rest of the design is fairly straightforward. Therefore, we'll leave it to you to work on this and design a solution for other elements on the page in this starting exercise.
+
+The final design includes some double lines on the corners of some boxes. ***For now, ignore these.*** We will create these in the next exercise.
+
+The HTML is in the correct order, but you may need to add some elements (like lightning bolts and maybe some additional styling markup).
+
+The CSS includes the medium solution layers that correspond with this HTML. Reuse code where possible.
+
+Refer to screenshots for styling each part of the page. Media queries will occur at 800px and 1400px.
+
+Image for "New Tour":
+https://assets.codepen.io/296057/fem-blindfold-1200.jpg
+
+Lightning bolt is in assets folder, or use
+https://assets.codepen.io/296057/fem-bolt.svg
+
+Begin: https://codepen.io/jen4web/pen/gOBvppB
+
+End: https://codepen.io/jen4web/pen/MWPQadP
+
+
+A. HTML
+
+First, drop in the SVG HTML for the lighting bolt where called for.
+
+In the reviews:
+<div class="bolt"><img src="https://assets.codepen.io/296057/fem-bolt.svg" alt="" /></div>
+
+No alt text because this bolt is just a separator, purely decorative.
+
+Add bolt later on the page:
+    <img src="https://assets.codepen.io/296057/fem-bolt.svg" alt="" />
+Still decorative, not properly styled, be patient.
+
+
+B. STYLING FROM THE OUTSIDE IN
+
+Let's start by setting up the wrapper:
+Note the wrapper does not have a max-width in base:
+  .wrapper {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+@media (min-width: 800px) {
+  .wrapper {
+    max-width: 800px;
+  }
+}
+@media (min-width: 1400px) {
+  .wrapper {
+    max-width: 1400px;
+  }
+}
+
+Don't know if these are the right values or placement yet, but we have a starting point.
+
+
+IN GENERAL: We will want 2rem between each element, so set margins on outside containers to margin: 2rem auto where possible.
+Remind students that BLOCK MARGINS COLLAPSE.
+
+C. REVIEWS
+@layer reviews {
+  .star {
+    width: 18px;
+  }
+  .reviews {
+    margin: 2rem auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+  }
+  .hidemobile {
+    display: none;
+  }
+  @media (min-width: 800px) {
+    .hidemobile {
+      display: block;
+    }
+    .hidetablet {
+      display: none;
+    }
+    .reviews {
+      padding: 0 3rem;
+    }
+  }
+  @media (min-width: 1000px){
+    .hidetablet {
+      display: block;
+    }
+  }
+}
+
+Buttons: Place in base styling - move button-primary from album
+
+Change HTML:
+  <section class="cta">
+    <a href="#" class="button-primary button-fullwidth">Photos from the Road</a>
+    <!-- lighting bolt, album, bolt -->
+    <a href="#" class="button-primary button-fullwidth">Magenta Lime Official Store</a>
+  </section>
+
+Add CSS in base:
+   .button-fullwidth {
+    display: block;
+    width: 100%;
+    border-radius: 0;
+    margin: 2rem auto;
+  }
+
+
+D. ALBUM ITEMS
+
+Currently our album is set to display at a fixed width all the time. Let's change that.
+
+.album around line 94 - delete the max width. This allows this to flex a bit in parallel with the buttons.
+
+Now we need to turn the "Shows Announced" box into a box with a background image, without changing the other box. We can do this by assigning an additional class.
+
+Around line 57 in HTML:
+  <section class="album maglime">
+
+Around line 210 in the album layer:
+  .maglime {
+    background: url(https://assets.codepen.io/296057/fem-blindfold-1200.jpg)
+      no-repeat;
+    background-size: cover;
+  }
+
+Note that we don't have the elements lined up in the center of the container anymore. So either on the .maglime class or on the .album class (where it will have little visible effect), add these styles:
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+
+This should take care of most things...

@@ -1,0 +1,14 @@
+Sign up for a CodePen free account:
+https://www.codepen.io
+
+This course's CodePen collection is here:
+https://codepen.io/collection/jbxMqm
+
+
+Or try working with VS Code plus a browser preview extension:
+
+Visual Studio Code Browser Preview: 
+https://dev.to/jamesqquick/visual-studio-code-browser-preview-5dgf
+
+
+Or use your own way! Everything in this course is generic HTML, CSS, and JavaScript.

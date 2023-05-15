@@ -1,0 +1,139 @@
+CHAPTER 5F: TRACKLIST TABLET
+
+
+Begin: https://codepen.io/jen4web/pen/gOBeamO
+End: https://codepen.io/jen4web/pen/OJBvypV
+
+Tablet and desktop display for this component are essentially the same.
+
+The next thing to do is to get the tracklist up to the left side of the album cover, turn the button on its side, and have the tracklist fly out to the left on click rather than flying down.
+
+To accomplish this, we'll do the following:
+
+1. Get the tracklist to the left side and make sure it still works
+
+2. Format the button
+
+3. Fix the formatting so the container grows on click
+
+4. Add the fun stuff: animations, scrollbar styling, etc.
+
+
+1. GET THE TRACKLIST TO THE LEFT SIDE
+
+Look at the HTML structure of our main-grid. We have two children, a cover (which contains the image, icons, and audio player) and the tracklist. We have a parent and two children. Is this as simple as placing the elements side by side?
+
+   .main-grid {
+    display: grid;
+    grid-template-columns: 100px 500px;
+    max-width: 600px;
+    gap: 0;
+    margin: 0 auto;
+  }
+  .cover {
+    order: 2;
+  }
+
+  Kinda ugly -- the tracklist overlaps the cover and the audio panel. We have two things to fix here. We need to turn the button to assist with the width, and we need to fix the height.
+
+  .tracklist {
+    height: 500px;
+    justify-self: end;
+    padding: 0rem;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  Fundamentally it's working, but it's still kind of ugly! Let's fix the button, scrollbars, and let's make the tracklist bigger when it's open.
+
+  2. FORMAT THE BUTTON
+
+  .button-tracklist {
+    transform: rotate(90deg);
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-top: 225px;
+  }
+
+  Button looks great until clicked. Once it's clicked, what do we want to have happen? Let's say we want the button to go to the top of the tracklist and say "close X".
+
+  To do this, we'll need to change the class of our button when clicked, so we can style that new class to make our button look differently.
+
+  To the JavaScript function we wrote to hide and show the tracklist, let's add this:
+
+  document.querySelectorAll(".button-tracklist").forEach((item) => {
+    item.classList.toggle("button-close");
+  });
+
+  And then let's style the new close button:
+
+  .button-close {
+    transform: rotate(0deg);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--cyan);
+    color: var(--black);
+    margin-top: 0px;
+  }
+
+  3. MAKE THE CONTAINER GROW
+
+  When the tracklist button is clicked, we want the button to move as we coded, but we also want the tracklist column to grow in width.
+
+  We could accomplish this with another change in class, this time for the main grid!
+
+  To the JavaScript, add this:
+
+  document.querySelectorAll(".main-grid").forEach((item) => {
+    item.classList.toggle("main-grid-open");
+  });
+
+  And let's style our new class:
+
+  .main-grid-open {
+    grid-template-columns: 300px 500px;
+    max-width: 800px;
+  }
+
+  4. ADD THAT EXTRA POLISH
+
+  Now that it's fundamentally working, let's add extra polish on our design.
+
+  to .main-grid, .main-grid-open, .button-tracklist, .button-close, add this line:
+
+      transition: all 0.5s ease;
+
+
+  Let's get the table off the edges of the tracklist window:
+
+    .tracklist table {
+    margin: -4rem 1rem 0.5rem 1rem;
+  }
+    .tracklist table td:last-of-type {
+      padding-right: 2rem;
+    }
+
+ Finally, let's style the scrollbar:
+
+  /* scrollbars for Webkit browsers
+  h/t https://ishadeed.com/article/custom-scrollbars-css/
+  */
+  .tracklist::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .tracklist::-webkit-scrollbar-track {
+    background-color: var(--cyan);
+  }
+
+  .tracklist::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 1);
+  }
+  /* scrollbar for Firefox */
+  html {
+    scrollbar-color: var(--cyan) var(--grey);
+    scrollbar-width: thin;
+  }

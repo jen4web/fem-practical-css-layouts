@@ -1,0 +1,94 @@
+CHAPTER 3D: EASY DESIGN - Tablet design
+
+Approach:
+* Override styling for a tablet design in a media query, leveraging existing styles and making changes where needed.
+
+
+Tips:
+* First, work on each section of the page and its own layout.
+
+* What changes between layouts? Say it out loud or write it down to clarify your thoughts. "The tour dates section starts on mobile with one column with everything stacked and centered. It moves to tablet with three columns with spacing between each item. Then it moves to desktop with one column on the right side of the page."
+
+* Some layouts happen within each section, while other layouts happen within the page itself. Focus on the section layouts first, then on the page layouts. Get the rough locations first before worrying about perfect spacing and alignment.
+
+* Never hesitate to throw in borders or background colors to aid styling. If you can't see it, you can't style it!
+
+
+We will take the following approach:
+* wrapper
+* banner image
+* tour
+* reviews
+* header & footer
+
+Starting CodePen: https://codepen.io/jen4web/pen/RweVwNJ
+
+
+1. Wrapper
+Currently our wrapper is set to 375px wide. Let's change it to 800px wide for this media query, and let's set 2rem of padding on the left and right.
+
+@media (min-width: 800px) {
+  .wrapper {
+    max-width: 800px;
+    padding: 2rem;
+  }
+}
+
+2. Our banner photo looks a little small. We have a larger version of this photo available. How might we switch from one photo to another?
+
+      <picture>
+        <source srcset="https://assets.codepen.io/296057/fem-blindfold-1200.jpg" media="(min-width: 800px)">
+      <img src="https://assets.codepen.io/296057/fem-blindfold-475.jpg" alt="3 members of Magenta Lime, wearing blindfolds." />
+      </picture>
+
+Useful CodePen image links:
+
+<img src="https://assets.codepen.io/296057/fem-blindfold-475.jpg" alt="3 members of Magenta Lime, wearing blindfolds." /> 
+
+<img src="https://assets.codepen.io/296057/fem-blindfold-1200.jpg" alt="3 members of Magenta Lime, wearing blindfolds." /> 
+
+
+3. Tours
+
+Fold up your HTML so you can clearly see what's going on within <main>. Looks like parents and children, doesn't it? Let's use this to set up a grid layout.
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  Why is Tour in its own grid cell? Because it's a child of <main> and is treated as such.
+
+  What if we want Tour to continue to be a banner across all 3 columns?
+
+  * Rearrange parents and children by adding another <div> to group the paragraphs
+
+  * or use Grid's area capability to have the h1 occupy one row and 3 columns.
+
+  Let's take the 2nd approach.
+
+  main > * {
+      border: 2px solid white;
+  }
+
+    main h1 {
+     /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+    grid-area: 1 / 1 / 2 / 4;
+  }
+
+4. Reviews
+
+Go to the <aside> and collapse the HTML code inside. You'll see <aside> has 3 children, each containing an image and a review. All we need to do is set these up as a grid layout.
+
+  aside {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  5. Finally, review the header and footer. They are all set!
+
+
+Ending CodePen: https://codepen.io/jen4web/pen/VwEbwmx
+
+

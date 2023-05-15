@@ -1,0 +1,41 @@
+5H: PUTTING IT ALL TOGETHER
+
+Let's assemble everything we've built into a single page.
+
+* Small elements: 
+https://codepen.io/jen4web/pen/MWPQadP
+
+* Double border corners: https://codepen.io/jen4web/pen/KKGQLxd
+
+* Nav tweaks: https://codepen.io/jen4web/pen/WNaMqWE
+
+* Cover icons: https://codepen.io/jen4web/pen/BaqYXKd
+
+* Tracklist tablet: https://codepen.io/jen4web/pen/OJBvypV
+
+* Diamond images: https://codepen.io/jen4web/pen/wvYmKbJ
+
+RECOMMENDED APPROACH:
+- Fork the "double border corners" pen, which has commenting in the HTML for where additional HTML should be added.
+
+- From the Diamonds pen, copy the CSS and JavaScript and paste to the "double border" pen.
+
+- Copy the appropriate HTML from all other pens and paste into the "double border" pen.
+
+- Test - you should have a design that works for mobile and tablet.
+
+A few tweaks:
+- add aside.diamond-border to the HTML around the diamond display. Place the border on this:
+
+  .diamond-border {
+    border: 2px solid var(--cyan);
+  }
+
+  Now the diamond box will be as big as the other boxes on tablet.
+
+  - .album style should be     margin: 2rem auto;
+Starts at 0 auto
+
+And we're ready to add the desktop styling!
+
+End: https://codepen.io/jen4web/pen/eYPMKPz

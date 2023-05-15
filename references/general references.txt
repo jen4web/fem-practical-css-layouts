@@ -1,0 +1,43 @@
+ALWAYS USEFUL REFERENCES
+
+Complete Guide to Grid:
+https://css-tricks.com/snippets/css/complete-guide-grid/
+
+Complete Guide to Flexbox:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+@layer is a cascade option, although we use it for simple grouping of styles. Read more here: 
+https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
+
+A Complete Guide to CSS Cascade Layers
+https://css-tricks.com/css-cascade-layers/
+
+Prevent background gradients from repeating:
+https://forum.freecodecamp.org/t/solved-preventing-a-gradient-background-from-repeating/74090
+
+Table captions, important for accessibility:
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption
+
+Background-size CSS property and possible values:
+https://developer.mozilla.org/en-US/docs/Web/CSS/background-size
+
+Swapping Out Text, Five Different Ways:
+https://css-tricks.com/swapping-out-text-five-different-ways/
+
+CSS Transition reference:
+https://css-tricks.com/almanac/properties/t/transition/
+
+Custom Scrollbars:
+https://ishadeed.com/article/custom-scrollbars-css/
+
+Toggle button text on click using JavaScript:
+https://bobbyhadz.com/blog/javascript-change-button-text-on-click
+
+VS Code browser preview:
+https://dev.to/jamesqquick/visual-studio-code-browser-preview-5dgf
+
+Showing only corner borders:
+https://stackoverflow.com/questions/14387690/how-can-i-show-only-corner-borders
+
+Diamond inspiration:
+https://ngrmr.at/blog/2023-02-20-break-after-even-element/

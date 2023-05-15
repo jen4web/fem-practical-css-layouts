@@ -1,0 +1,116 @@
+CHAPTER 5E: TRACKLIST MOBILE
+
+
+Begin: https://codepen.io/jen4web/pen/wvYyVZx
+End: https://codepen.io/jen4web/pen/yLRvmmd
+
+The tracklist for this design is hidden behind a button. When the button is clicked, the tracklist appears.
+
+This is relatively straightforward to code, but when we switch to tablet/desktop, this will get more challenging.
+
+For now, we need to do the following:
+* create the button that, when clicked, will open or close the tracklist, then style it
+
+* set up the border around the tracklist and additional styling
+
+* Write some JavaScript to make the tracklist appear and disappear.
+
+* BONUS: change text on the button when clicked!
+
+
+1. CREATE THE BUTTON AND STYLE IT
+
+Rename the "playlist" layer to "tracklist" to keep things straight.
+
+I've given this button an ID as it will be used in our JavaScript. 
+
+We're using a button, not a link, because this button hides and reveals our tracklist. It is not taking us someplace else, as a link does.
+
+.button-tracklist {
+	display: block;
+    border: none;
+    font-family: var(--serif);
+    text-transform: uppercase;
+    width: 100%;
+    color: var(--magenta);
+    background-color: transparent;
+    font-size: var(--h5);
+    padding: 1rem;
+}
+  .button-tracklist:hover {
+    color: var(--cyan);
+  }
+
+  2. SET UP BORDER AND ADDITIONAL STYLING
+
+  .tracklist {
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    border: 2px solid var(--magenta);
+  }
+  .tracklist:hover {
+    border-color: var(--cyan);
+  }
+
+  For the table, we'll remove the headers by collapsing them, remove the th styling, remove the max-width, and set up some new margins to pull the table up.
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: -4rem auto 1rem auto;
+    font-family: var(--cursive);
+  }
+  caption, th {
+    visibility: collapse;
+    /* the accessible way of hiding this but still visible to screen readers */
+  }
+  td {
+    padding: 1rem 0;
+  }
+  td:last-of-type {
+    font-family: var(--serif);
+    color: var(--magenta);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  3. WRITE SOME JAVASCRIPT
+
+  /* hide/reveal the tracklist */
+document.querySelector(".button-tracklist").addEventListener("click", () => {
+  document.querySelectorAll(".hidden").forEach((item) => {
+    item.classList.toggle("showing");
+  });
+});
+
+In the CSS: 
+  .hidden {
+    display: none;
+  }
+  .showing {
+    display: table;
+  }
+
+In the HTML: <table class="hidden">
+
+Now our list will hide and show!
+
+4. NEXT LEVEL: CHANGING TEXT ON CLICK
+
+/* Copied and modified from https://bobbyhadz.com/blog/javascript-change-button-text-on-click
+
+I am very sure you could somehow combine this functionality with the functionality above, but I am not enough of a JS person to do this!
+ */
+
+const btn = document.getElementById('tracklist');
+
+// ✅ Toggle button text on click
+btn.addEventListener('click', function handleClick() {
+  const initialText = 'Tracklist';
+
+  if (btn.textContent.includes(initialText)) {
+    btn.textContent = 'Close \u2716';
+  } else {
+    btn.textContent = initialText;
+  }
+});

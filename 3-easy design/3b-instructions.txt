@@ -1,0 +1,130 @@
+CHAPTER 3B: EASY DESIGN - Header, banner, tour styling
+
+Start: https://codepen.io/jen4web/pen/xxyqvJN
+Fork to your account.
+
+0. Because our CSS gets long, I'm going to use @layer to group our CSS in our document. @layer is supposed to be used for controlling the cascade (see my "Intermediate CSS" course). However, here we'll use it to easily collapse a bunch of styles in our CSS so we can navigate our stylesheet more easily. You do NOT need to use @layer this way in your production code!!! This is a teaching trick only.
+
+1. We're working only at mobile dimensions for now. Let's set our wrapper to max 375px wide and center it on the page. Uncomment our img style.
+
+.wrapper {
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+
+2. Header: Reduce the image size to 150px. Give the header some top and bottom padding. Center the contents.
+
+  header {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  header img {
+    max-width: 150px;
+  }
+
+
+3. Banner: This image is 475px wide, so we're good at mobile dimensions. Note: we'll likely change this for larger screen sizes later, but we're OK for now.
+
+
+4. Tour dates 
+Compare our default styling with the screenshot. What do you see?
+
+* Everything is centered
+* Text size for H1 is smaller
+* Date is tan, club name is lime and text is slightly larger
+
+a. Everything is centered
+
+Everything in the <body> is centered!
+
+  body {
+    font-family: var(--sans-serif);
+    font-weight: 300;
+    line-height: 1.75;
+    background-color: var(--teal);
+    color: var(--white);
+    font-size: var(--base-size);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+b. Text size for H1 is smaller
+
+We could create a class for this H1, but it may be more efficient to leverage the styles we already have and add a class name to our headings. This would allow us to make any text look like our heading styles without having to use the HTML element to make them appear as such. (Bootstrap does this in their code.)
+
+h1, .h1 {
+    font-size: var(--h1);
+  }
+
+  h2, .h2 {
+    font-size: var(--h2);
+  }
+
+  h3, .h3 {
+    font-size: var(--h3);
+  }
+
+  h4, .h4 {
+    font-size: var(--h4);
+  }
+
+  h5, .h5 {
+    font-size: var(--h5);
+  }
+
+  h6, .h6 {
+    font-size: var(--h6);
+  }
+
+  Now apply this to the Tour headline:
+  <h1 class="h3">Tour</h1>
+
+
+c.  Date is tan, club name is lime and slightly larger
+
+To apply these colors, we'll need a container around the affected words. <span> is a good choice as we add no semantics here, plus it's an inline element. We'll need some classes to apply the colors inside of the <span> elements.
+
+    <p><span class="date">31 July 2023</span><br>
+      <span class="club">The IVY</span><br>
+      Oakheart, CA
+    </p>
+    <p><span class="date">02 August 2023</span><br>
+      <span class="club">Club Ecstasy</span><br>
+      Longdale, CA
+    </p>
+    <p><span class="date">08 August 2023</span><br>
+      <span class="club">The Summit</span><br>
+      Carran, OR
+    </p>
+    <p><span class="date">10 August 2023</span><br>
+      <span class="club">Empire</span><br>
+      Goldenleaf, CA
+    </p>
+    <p><span class="date">18 August 2023</span><br>
+      <span class="club">The Thunder</span><br>
+      Stathford, OR
+    </p>
+    <p><span class="date">06 September 2023</span><br>
+      <span class="club">The Gate</span><br>
+      Monmouth, WA
+    </p>
+    <p><span class="date">11 September 2023</span><br>
+      <span class="club">Horizon</span><br>
+      Colkirk, WA</span>
+    </p>
+
+.date {
+  color: var(--tan);
+}
+.club {
+  color: var(--lime);
+  font-size: var(--h5);
+}
+
+
+Ending CodePen: https://codepen.io/jen4web/pen/VwEpoEL
+
+

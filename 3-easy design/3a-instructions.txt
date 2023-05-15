@@ -1,0 +1,150 @@
+CHAPTER 3: EASY DESIGN
+
+Easy design approach:
+* Mark up the content with HTML as best we can, based on the mobile design
+* Apply existing CSS from the style guide
+* Add CSS to make this look like our screenshots.
+
+Chapter starting CodePen: https://codepen.io/jen4web/pen/jOePEza
+Chapter ending CodePen: https://codepen.io/jen4web/pen/xxyGbyN
+
+A. HTML MARKUP
+
+Our HTML order will include:
+* header
+* opening image
+* tour list 
+* images and reviews
+* footer
+
+Start: https://codepen.io/jen4web/pen/jOePEza
+Fork to your account.
+
+Useful CodePen image links:
+
+<img src="https://assets.codepen.io/296057/fem-maglime-logo.svg" alt="Magenta Lime. Click for home." />
+
+<img src="https://assets.codepen.io/296057/fem-purple-arms.jpg" alt="" />
+
+<img src="https://assets.codepen.io/296057/fem-fireworks.jpg" alt="" />
+
+<img src="https://assets.codepen.io/296057/fem-blue-arms.jpg" alt="" />
+
+<img src="https://assets.codepen.io/296057/fem-blindfold-475.jpg" alt="" /> 
+
+
+1. Wrap a wrapper around the whole page. 
+
+<div class="wrapper"></div>
+
+
+2. Header: Set up the logo to display with a link to the home page.
+
+  <header>
+    <a href="#"><img src="https://assets.codepen.io/296057/fem-maglime-logo.svg" alt="Magenta Lime. Click for home." /></a>
+  </header>
+
+Note the image is large. Comment out the img style in the CSS for now.
+
+
+3. Leading image banner: Image requires a div to be flexible. Nothing semantic here, so div is a good choice. Note that with img style commented, the image will NOT be flexible, no matter what you do.
+
+  <div class="banner">
+    <img src="https://assets.codepen.io/296057/fem-blindfold-475.jpg" alt="3 men of Magenta Lime." />
+  </div>
+
+
+4. Tour dates - This is the main focus of the page. Tour gets the H1. 
+
+Tour dates consist of a date, a club name, and a city/state. Could mark this up with <time>, but it offers no advantages to screen readers or programming. <address> is used for website or article contact info, not in a context like this. A <table> might make sense. However, to keep formatting simple, I've gone with a pargraph and line breaks.
+
+  <main>
+    <h1>Tour</h1>
+    <p>31 July 2023<br>
+      The IVY<br>
+      Oakheart, CA
+    </p>
+    <p>02 August 2023<br>
+      Club Ecstasy<br>
+      Longdale, CA
+    </p>
+    <p>08 August 2023<br>
+      The Summit<br>
+      Carran, OR
+    </p>
+    <p>10 August 2023<br>
+      Empire<br>
+      Goldenleaf, CA
+    </p>
+    <p>18 August 2023<br>
+      The Thunder<br>
+      Stathford, OR
+    </p>
+    <p>06 September 2023<br>
+      The Gate<br>
+      Monmouth, WA
+    </p>
+    <p>11 September 2023<br>
+      Horizon<br>
+      Colkirk, WA
+    </p>
+  </main>
+
+
+
+5. We have a series of alternating images and reviews. Each image has one review, so we'll group these. This will also put our image in a flexible container for resizing.
+
+For the reviews, we have a quote plus a citation - this is clearly a <blockquote> plus a <cite>. A great way to associate these is via <figure> and <figcaption>. 
+
+For the stars -- consider the alt text carefully. You could have alt of "One star" for each, but how does that read on a screen reader? Better to say "Four star rating" for the first star, then leave the other stars as decorative images. All info is communicated appropriately to visitors this way. When setting up a decorative image, include alt=""
+
+This is not the main focus of the page - it's supporting information to get people excited about the tour, thus the <aside>. You might argue that <section> is a good choice as well.
+
+  <aside>
+    <div class="imggroup">
+      <img src="https://assets.codepen.io/296057/fem-purple-arms.jpg" alt="Purple stage and excited crowd." />
+      <figure>
+        <blockquote>Just WOW<br>
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="Four star rating." class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+        </blockquote>
+        <figcaption><cite>The Staple</cite></figcaption>
+      </figure>
+    </div>
+    <div class="imggroup">
+      <img src="https://assets.codepen.io/296057/fem-fireworks.jpg" alt="Red stage with fireworks and excited crowd." />
+      <figure>
+        <blockquote>Best. Album. Ever.<br>
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="Four star rating." class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+        </blockquote>
+        <figcaption><cite>Gold Spin</cite></figcaption>
+      </figure>
+    </div>
+    <div class="imggroup">
+      <img src="https://assets.codepen.io/296057/fem-blue-arms.jpg" alt="Blue smoky stage and crowd with person raising arms." />
+      <figure>
+        <blockquote>I can't stop listening<br>
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="Four star rating." class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+          <img src="https://assets.codepen.io/296057/fem-star.svg" alt="" class="star" />
+        </blockquote>
+        <figcaption><cite>Draft Media</cite></figcaption>
+      </figure>
+    </div>
+  </aside>
+
+6. The footer is a <footer>. It contains two simple paragraphs. 
+
+  <footer>
+    <p><a href="#">Contact</a></p>
+    <p>&copy; 2023 Magenta Lime</p>
+  </footer>
+
+
+Ending CodePen: https://codepen.io/jen4web/pen/gOBmVPp

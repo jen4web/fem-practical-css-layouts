@@ -1,0 +1,34 @@
+CHAPTER 4F: FINAL SITE ASSEMBLY FOR MOBILE AND TABLET
+
+We have everything coded for this page, at least in mobile format. Let's assemble this into a single document.
+
+Begin: https://codepen.io/jen4web/pen/ZEqJPed
+
+Fork the starting head of the document we already created.
+
+Now add elements:
+
+* https://codepen.io/jen4web/pen/vYVJEMo -- album cover and track
+* https://codepen.io/jen4web/pen/KKGmEyw -- reviews and images
+* https://codepen.io/jen4web/pen/ExdmGyL -- new album and track list
+* https://codepen.io/jen4web/pen/XWxRdrQ -- footer
+* https://codepen.io/jen4web/pen/XWxRdrQ -- we're missing the button styles from the tour page! Grab those and add to "album"
+
+We're missing the wrapper - add the HTML from "Tour" plus the two media queries. Test in full view - not centered.
+
+Go to "base", add .wrapper { margin: 0 auto; } to center it on the page.
+
+Go to "audio", add     padding-bottom: 2rem; to .cover to give space between player and next section.
+
+Note that the album cover has a blue border on it for tablet and desktop. Let's add that as well. In the "audio" layer:
+
+  @media (min-width: 700px) {
+    .cover img {
+      border: 1px solid var(--cyan);
+    }
+  }
+
+
+
+
+End: https://codepen.io/jen4web/pen/VwEzRbp

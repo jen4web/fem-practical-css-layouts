@@ -1,0 +1,46 @@
+EASY DESIGN, STARTING STYLEGUIDE
+
+Beginning HTML, apply CSS to this:
+https://codepen.io/jen4web/pen/eYPNYKW
+
+Magenta Lime colors
+
+Lime       #A4FFA2
+Magenta    #F47DDA
+Magenta50  #F47DDA80
+White      #FFFFFF
+Tan        #CEC5B4
+Teal	   #2E6D81
+Cyan	   #7DE6F4
+Black      #050D14
+
+8-digit hex to RGBA converter:
+https://jsfiddle.net/teddyrised/g02s07n4/
+
+* Establish these colors as CSS global variables
+* Display these colors in a series of small boxes (3rem by 3rem), one color per box.
+
+Magenta Lime Fonts
+
+Simple site:
+Poppins is our only font. 
+https://fonts.google.com/?query=poppins
+
+Poppins 300 and 600 weights:
+https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&amp;display=swap
+
+* Set up a link to the Google font in the CodePen. (Settings - CSS - Add External Link)
+
+* Create a type scale using CSS variables and calc.
+Font base size: 16px (browser default)
+Font type scale: Major Third (https://typescale.com/)
+
+H1: 1.563rem
+Club links: 1.25rem
+All other text: 1rem
+
+
+Finish: 
+https://codepen.io/jen4web/pen/KKGpKBM
+
+

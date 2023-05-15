@@ -1,0 +1,103 @@
+CHAPTER 4G: FINAL SITE WITH DESKTOP LAYOUT
+
+We have everything coded for this page, except we have not finished the desktop layout. 
+
+Begin: https://codepen.io/jen4web/pen/dygzrjR
+
+A. EVALUATE
+Check the screenshots and our document structure. What needs to change to accommodate desktop?
+
+For the most part, the individual components are responding as they should on mobile, tablet, and desktop. However, the overall layout for desktop is not yet correct.
+
+<div class="wrapper">
+	<header id="top">...</header>
+	<div class="main-grid">
+		<section class="cover">...</section> --> could change to main, as this is our main focus
+		<aside class="reviews">...</aside>
+		<aside>
+			<section class="album">...</section>
+			<section>...</section>
+		</aside>
+	</div>
+	<footer>...</footer>
+</div>
+
+This sets the basis for our 3 column layout for desktop.
+
+We don't need to touch anything inside our components!
+
+B. CSS CHANGES
+
+Let's start another layer called "main-grid". Place the wrapper MQ's inside of it.
+
+Our reviews layout changes at 700px, and our desktop layout was designed at 1440px. Let's set some consistent breakpoints:
+
+325-700px: mobile
+701-1100px: tablet
+1100px and up: Desktop
+
+Adjust our wrapper values accordingly.
+
+  @media (max-width: 700px) {
+    .wrapper {
+      min-width: 325px;
+      max-width: 700px;
+      padding: 0 1rem;
+    }
+  }
+
+  This makes our mobile site look clean, collapsing to a minimum readable value, and giving a bit of space on either side.
+
+
+Next, let's consider the desktop layout, starting around 1025px.
+
+In the "reviews" layer, change line 519 @media min-width 1000px to 1025px.
+
+  @media (min-width: 1025px) {
+    .wrapper {
+      max-width: 1440px;
+    }
+  }
+
+  Now we write the CSS for the main-grid layout. main-grid is the parent, while the section.cover, aside.reviews, and aside are the children.
+
+ @media (min-width: 1025px) {
+    .wrapper {
+      max-width: 1440px;
+      border: 1px solid red;
+      padding: 0 1.5rem; <-- this gets the photos from being cut off
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 200px auto 350px;
+      gap: 2rem;
+    }
+    .cover {
+      order: 2;
+    }
+    .main-grid aside:last-child {
+      order: 3;
+    }
+    .album {
+      margin-top: 0;
+    }
+  }
+
+
+
+Top nav might get lost as it's so separated. Consider changing the #top style in the nav layer:
+
+#top {
+	max-width: 850px;
+    margin: 4rem auto;
+}
+
+This keeps our nav closer together and centered.
+
+Could consider reducing the overall width to 1200px as well.
+
+Last bug -- note the reviews column has a big chunk of space at the bottom. Why is that there? Because of CSS Grid -- all columns are the same height. How could we get our border to the height of the content only?
+
+Place a <div> around the aside.reviews! Now the div stretches in layout, leaving the aside and its border to be as tall as the column.
+
+

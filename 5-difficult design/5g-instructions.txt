@@ -1,0 +1,113 @@
+CHAPTER 5G: DIAMONDS!
+
+
+Begin: https://codepen.io/jen4web/pen/PoyRPLz
+End: https://codepen.io/jen4web/pen/wvYmKbJ
+
+Our starting pen has 10 bullets, and I've given you the styling as background images for each bullet. This is to save time, because it's a lot of typing :-D
+
+background-size: contain because we want to contain these images and see as much of them as possible. They will repeat because their height is very tiny without the additional styling we need to add.
+
+Let's start by setting up some mobile styling - for screens less than 324px wide. This will be outside the media query.
+
+.diamond-container {
+    --sq: 200px;
+    --sq-gap: 1rem;
+    --max-width: 325px;
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    border: 2px solid var(--cyan);
+  }
+.diamonds li {
+  list-style: none;
+  width: var(--sq);
+  height: var(--sq);
+  margin-bottom: var(--sq-gap);
+}
+
+Awesome, we have photos we can see with a little separation. Let's make them more interesting by adding some tilt.
+
+.diamonds li:nth-child(odd) {
+  transform: rotate(4deg);
+}
+.diamonds li:nth-child(even) {
+  transform: rotate(-6deg);
+}
+
+Now let's dig into making diamonds!
+
+@media (min-width: 324px) {
+  .diamond-container {
+    --sq: 150px;
+    --sq-gap: 3px;
+    --max-width: 325px;
+  }
+  /* turn off image rotation */
+  .diamonds li:nth-child(odd) {
+    transform: rotate(0deg);
+  }
+  .diamonds li:nth-child(even) {
+    transform: rotate(0deg);
+  }
+
+Now let's give us some diamonds! We use clip-path to trim each square into a diamond.
+
+  .diamonds li {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+Now let's set up a basic FB layout. Note we get one diamond per line because there just isn't much room in our container.
+
+  .diamonds {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: var(--sq-gap);
+  } 
+
+  Now we need to make our diamonds overlap a bit:
+
+    .diamonds li {
+    margin-left: calc(-0.5 * var(--sq));
+    margin-bottom: 0;
+  }
+
+Now, if I pull the every 3rd diamond up, starting with the 2nd, I should get an interesting tiling effect.
+
+  /* For every 3rd diamond, starting with the second, pull it up in space from its current location */
+  .diamonds li:nth-child(3n + 2) {
+    margin-top: calc((-0.5 * var(--sq)) - (0.5 * var(--sq-gap)));
+  }
+
+  Looks great, but my diamonds are off the page now! adding some padding white space will bring them back.
+
+  .diamonds {
+      padding-left: calc(0.5 * var(--sq));
+    padding-top: calc(0.5 * var(--sq));
+  }
+
+  Now all is well EXCEPT for that last diamond. It is out of place because it's the first diamond in its row. 
+
+ .diamonds li:nth-child(10) {
+    background-image: url("https://assets.codepen.io/296057/fem-women.jpg");
+    background-size: contain;
+    margin-top: calc(-0.5 * var(--sq) - (0.5 * var(--sq-gap)));
+  }
+
+That's all of our heavy lifting! Now it's simply a matter of changing our variable values across breakpoints to accommodate a larger design.
+
+/* at the next breakpoint, just change the variables to make things bigger */
+@media (min-width: 440px) {
+  .diamond-container {
+    --sq: 200px;
+    --sq-gap: 4px;
+    --max-width: 440px;
+  }
+}
+@media (min-width: 800px) {
+  .diamond-container {
+    --sq: 250px;
+    --sq-gap: 6px;
+    --max-width: 550px;
+  }
+}
